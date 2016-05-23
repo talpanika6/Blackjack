@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#E0E0E0</color>
+    <color name="colorPrimaryDark">#78909C</color>
+    <color name="colorAccent">#EF5350</color>
+
+    <color name="colorPrimaryIntro">#263238</color>
+    <color name="colorPrimaryDarkIntro">#263238</color>
+
+    <color name="material_indigo_500">#3F51B5</color>
+    <color name="material_indigo_600">#3949AB</color>
+    <color name="material_teal_a400">#1DE9B6</color>
+    <color name="material_red_400">#EF5350</color>
+
+</resources>
