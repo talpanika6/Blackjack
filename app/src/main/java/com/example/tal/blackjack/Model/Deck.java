@@ -22,7 +22,7 @@ public class Deck
         numCards = 52;
     }
 
-    public void shuffle() {
+    private void shuffle() {
         for(int i = 0; i < numCards - 1; i++)  {
             int r = (int)((numCards-i)*Math.random()+i);
             Card temp = cards[i];

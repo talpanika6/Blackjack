@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-    public void showNewGameView() {
+    private void showNewGameView() {
         MaterialDialog dialog = new MaterialDialog.Builder(this)
                 .title(R.string.new_game)
                 .customView(R.layout.start_game_dialog, true)

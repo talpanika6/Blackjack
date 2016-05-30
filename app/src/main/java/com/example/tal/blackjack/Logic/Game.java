@@ -150,7 +150,7 @@ public class Game
      * Deal cards to players
      */
 
-    public void dealHands() {
+    private void dealHands() {
         for(Player p : players)
             for(int i = 0; i < 2; i++) {
                 Card c = gameDeck.deal();
@@ -185,7 +185,7 @@ public class Game
 
     }
 
-    public void countCard(Card c) {
+    private void countCard(Card c) {
         if(c.getRank() >=2 && c.getRank() <= 6)
             cardCounting+=1;
         else if(c.getRank() >= 10 && c.getRank() <= 14)

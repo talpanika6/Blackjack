@@ -47,13 +47,14 @@ public class GameActivity extends AppCompatActivity implements Runnable{
     private SurfaceHolder holder;
     private Thread thread;
     private boolean locker=true;
+    private long iBalance=100;
 
-    Game game;
+   private Game game;
 
 
-    Bitmap[] cardImages;
-    Bitmap mCardBack;
-    Bitmap mArrowTurn;
+   private Bitmap[] cardImages;
+   private Bitmap mCardBack;
+    private Bitmap mArrowTurn;
 
     private String pName;
 
@@ -84,8 +85,6 @@ public class GameActivity extends AppCompatActivity implements Runnable{
         hit = (Button) findViewById(R.id.hit);
         stay = (Button) findViewById(R.id.stay);
 
-
-
         //place holder
         holder = surface.getHolder();
         //start thread
@@ -98,11 +97,9 @@ public class GameActivity extends AppCompatActivity implements Runnable{
         //get Bet from player
         placeABet();
 
-
-
     }
 
-    public void placeABet() {
+    private void placeABet() {
         MaterialDialog dialogB = new MaterialDialog.Builder(this)
                 .title(R.string.p_bet)
                 .customView(R.layout.place_bit, true)
@@ -132,7 +129,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
     private void StartGame(int bet)
     {
         //initait game
-        game = new Game(pName,1000,bet);
+        game = new Game(pName,iBalance,bet);
 
         //update bottom bar
         balanceText.setText("Balance: "+game.getPlayers().get(1).getBalance()+"$");
@@ -148,7 +145,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
 
                     if(game.score(game.getCurrentPlayer()) > 21)
                     {
-                        game.isGameOver=true;
+                       // game.isGameOver=true;
                     }
                     else
                       game.nextPlayer();
@@ -156,7 +153,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
 
                 if(game.score(game.getCurrentPlayer()) > 21)
                 {
-                    game.isGameOver=true;
+                   // game.isGameOver=true;
                 }
 
 
@@ -172,13 +169,13 @@ public class GameActivity extends AppCompatActivity implements Runnable{
 
                 if(game.getCurrentPlayer().getName().equals("Dealer")){
                     dealerAI();
-                    game.isGameOver=true;
+                   // game.isGameOver=true;
 
             }
         });
     }
 
-    void dealerAI() {
+   private void dealerAI() {
         Player dealer = game.getCurrentPlayer();
 
         game.isHoleFlipped = false;
@@ -191,7 +188,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
         waitingForInput = false;
     }
 
-    public void resetGame()
+    private void resetGame()
     {
 
         String winnerName =game.scoreHands().getName();
@@ -247,7 +244,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
 
     }
 
-    public void loadBitmaps() {
+    private void loadBitmaps() {
         Bitmap bitCardBack = BitmapFactory.decodeResource(this.getResources(), R.drawable.cardback);
         mArrowTurn=BitmapFactory.decodeResource(this.getResources(), R.mipmap.ic_fast_forward_white_18dp);
         mCardBack= Bitmap.createScaledBitmap(bitCardBack, 352, 400, false);
@@ -431,7 +428,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
     }
 
 
-    public void ExitGame()
+    private void ExitGame()
     {
         new MaterialDialog.Builder(this)
                 .title(R.string.exit_game)
@@ -453,7 +450,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
         thread = new Thread(this);
 
         //placeABet();
-        game = new Game(pName,1000,500);
+        game = new Game(pName,iBalance,500);
         thread.start();
         waitingForInput = false;
     }
