@@ -1,6 +1,5 @@
 package com.example.tal.blackjack;
 
-
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -39,7 +38,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
 
     private View positiveAction;
     private Button hit;
-    private  Button stay;
+    private Button stay;
     private SurfaceView surface;
 
     private NumberPicker PlaceBet;
@@ -49,11 +48,10 @@ public class GameActivity extends AppCompatActivity implements Runnable{
     private boolean locker=true;
     private long iBalance=100;
 
-   private Game game;
+    private Game game;
 
-
-   private Bitmap[] cardImages;
-   private Bitmap mCardBack;
+    private Bitmap[] cardImages;
+    private Bitmap mCardBack;
     private Bitmap mArrowTurn;
 
     private String pName;
@@ -111,24 +109,21 @@ public class GameActivity extends AppCompatActivity implements Runnable{
 
                 }).build();
 
-
         PlaceBet=(NumberPicker)dialogB.getCustomView().findViewById(R.id.placeBet) ;
         PlaceBet.setMaxValue(1000);
-        PlaceBet.setMinValue(0);
+        PlaceBet.setMinValue(1);
         PlaceBet.setValue(100);
-
 
         positiveAction = dialogB.getActionButton(DialogAction.POSITIVE);
         positiveAction.setEnabled(true); // disabled by default
-
         dialogB.show();
-
-
     }
 
     private void StartGame(int bet)
     {
         //initait game
+        if(bet>100)
+            bet=100;
         game = new Game(pName,iBalance,bet);
 
         //update bottom bar
@@ -156,10 +151,7 @@ public class GameActivity extends AppCompatActivity implements Runnable{
                    // game.isGameOver=true;
                 }
 
-
-
                 waitingForInput = false;
-
         });
 
         stay.setOnClickListener((View v)-> {
